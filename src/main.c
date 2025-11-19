@@ -1,5 +1,18 @@
-#include <raylib.h>
+// codigo teste para abrir a janela
 
-int main(){
-    InitWindow(800, 800, "window");
+#include "raylib.h"
+
+int main(void)
+{
+    InitWindow(800, 600, "Teste Raylib + GCC");
+
+    while (!WindowShouldClose()) {
+        BeginDrawing();
+        ClearBackground(RAYWHITE);
+        DrawText("Raylib funcionando!", 190, 280, 20, DARKGRAY);
+        EndDrawing();
+    }
+
+    CloseWindow();
+    return 0;
 }
