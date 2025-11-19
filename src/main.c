@@ -4,7 +4,7 @@
 
 int main(void)
 {
-    InitWindow(800, 600, "Teste Raylib + GCC");
+    InitWindow(650, 650, "Slot Machine Game");
 
     while (!WindowShouldClose()) {
         BeginDrawing();

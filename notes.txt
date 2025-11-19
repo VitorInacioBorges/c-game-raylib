@@ -1,0 +1,102 @@
+never done this type of work (game) in this specific language and library 
+so i'll be documentanting the functions and things i do:
+
+------------------------------------
+
+DEPENDENCIES:
+
+#include "raylib.h"
+#include <stdlib.h>   
+#include <stdio.h>    
+#include <math.h>     
+#include <time.h>     
+
+-----------------------------------
+
+INITIALIZATION:
+
+# starts the window
+InitWindow(int width, int height, const char *title) 
+
+# sets the initial game fps
+SetTargetFPS(int fps)
+
+# return true if ESC is pressed or the window is closed
+# used in a loop
+WindowShouldClose()
+
+# closes the window
+ClosesWindow()
+
+----------------------------------
+
+2D RENDERING:
+
+# initiates a rendering frame
+BeginDrawing()
+
+# clear the backgroung with a color
+ClearBackground(Color color)
+
+# closes the current frame
+EndDrawing()
+
+----------------------------------
+
+USER ENTRANCE:
+
+# return true if the mouse button is pressed in the current frame
+IsMouseButtonPressed(int button)
+
+# returns the mouse position in the screen
+GetMousePosition()
+
+------------------------------------
+
+TIME:
+
+# return the time in seconds between the last and current frame
+GetFrameTime()
+
+------------------------------------
+
+RANDOMING:
+
+# returns an int number between the minimum and max number
+GetRandomValue(int min, int max)
+
+------------------------------------
+
+LOAD AND UNLOAD IMAGES / TEXTURES:
+
+# loads an image from the disc and creates a 2d texture
+LoadTexture(const char *fileName)
+
+# unloads the texture
+UnloadTexture(Texture2D texture)
+
+------------------------------------
+
+DRAWING AND TEXTURE:
+
+# draws a simple texture
+DrawTexture(Texture2D texture, int posX, int posY, Color tint)
+
+# draws part of a texture
+DrawTextureRec(Texture2D texture, Rectangle source, Vector2 position, Color tint)
+
+# draws part of a texture (has rotation and scale options)
+DrawTextureEx(Texture2D texture, Vector2 position, float rotation, float scale, Color tint)
+
+------------------------------------
+
+SCREEN TEXT:
+
+# draws a texture in the screen
+DrawText(const char *text, int posX, int posY, int fontSize, Color color)
+
+# returns the width af the text in pixels. very useful for centralizing 
+MeasureText(const char *text, int fontSize)
+
+-------------------------------------
+
