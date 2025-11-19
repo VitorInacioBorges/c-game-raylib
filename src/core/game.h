@@ -12,6 +12,8 @@ void InitGame();
 void UpdateGame();
 void DrawGame();
 void StartSpin();
+void WinGame();
+void LoseGame();
 
 extern SlotState slot_state;
 extern int money;

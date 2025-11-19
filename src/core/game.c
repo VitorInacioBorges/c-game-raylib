@@ -31,10 +31,36 @@ void DrawGame(){
     EndDrawing();
 }
 
-void StartSpin(){
+void WinGame(){
 
 }
 
-void UpdateGame(){
+void LoseGame(){
 
+}
+
+void StartSpin(){
+    if (money <= 0) return;
+
+    money -= 200;
+    slot_state = SLOT_SPINNING;
+    spinTimer = 1.2f;
+
+    if (reels[0] == reels[1] && reels[1] == reels[2]){
+        WinGame();
+    } else {
+        LoseGame();
+    }
+}
+
+void UpdateGame(){
+    switch(slot_state){
+        case SLOT_STATIC:
+            if(IsMouseButtonPressed(MOUSE_BUTTON_LEFT)){
+                StartSpin();
+            } 
+            break;
+        case SLOT_SPINNING:
+        case SLOT_RESULT:
+    }
 }

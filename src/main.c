@@ -9,6 +9,7 @@ int main(void)
     InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE);
 
     while (!WindowShouldClose()) {
+        InitGame();
         DrawGame();
     }
 
