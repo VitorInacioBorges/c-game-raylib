@@ -9,7 +9,7 @@ int money;
 int reels[3];
 float spinTimer;
 
-void InitGame(){
+void InitGame() {
     // starts the random number generator
     srand(time(NULL));
 
@@ -24,22 +24,22 @@ void InitGame(){
     spinTimer = 0;
 }
 
-void DrawGame(){
+void DrawGame() {
     BeginDrawing();
     ClearBackground(RAYWHITE);
     DrawText("Hello My Friend!", 50, 325, 20, BLACK);
     EndDrawing();
 }
 
-void WinGame(){
+void WinGame() {
 
 }
 
-void LoseGame(){
+void LoseGame() {
 
 }
 
-void StartSpin(){
+void StartSpin() {
     if (money <= 0) return;
 
     money -= 200;
@@ -53,13 +53,12 @@ void StartSpin(){
     }
 }
 
-void UpdateGame(){
+void UpdateGame() {
     switch(slot_state){
         case SLOT_STATIC:
             if(IsMouseButtonPressed(MOUSE_BUTTON_LEFT)){
                 StartSpin();
-            } 
-            break;
+            } break;
         case SLOT_SPINNING:
         case SLOT_RESULT:
     }

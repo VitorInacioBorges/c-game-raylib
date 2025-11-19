@@ -4,12 +4,12 @@
 #include "./config/config.h"
 #include "./core/game.c"
 
-int main(void)
-{
+int main(void) {
     InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE);
+    InitGame();
 
     while (!WindowShouldClose()) {
-        InitGame();
+        UpdateGame();
         DrawGame();
     }
 
