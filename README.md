@@ -8,16 +8,6 @@ Um pequeno jogo 2D escrito em C usando a biblioteca raylib. Este repositório co
 - Lida com entrada do teclado (e opcionalmente do mouse) para controlar o jogador, renderiza sprites da pasta `assets/sprites/` e reproduz áudio de `assets/audio/`.
 - Projetado como um projeto de aprendizado para a matéria de Programação de Computadores I do curso de Engenharia de Software da UEPG.
 
-# 🎮 c-game-raylib
-
-Um pequeno jogo 2D escrito em C usando a biblioteca raylib. Este repositório contém o código-fonte, os assets e os arquivos de build para que você possa compilar e executar o projeto em plataformas desktop.
-
-## 🚀 O Jogo
-
-- Um jogo/demo 2D minimalista que demonstra tratamento de entrada, renderização, loop de jogo simples e gerenciamento de assets usando raylib.
-- Lida com entrada do teclado (e opcionalmente do mouse) para controlar o jogador, renderiza sprites da pasta `assets/sprites/` e reproduz áudio de `assets/audio/`.
-- Projetado como um projeto de aprendizado para a matéria de Programação de Computadores I do curso de Engenharia de Software da UEPG.
-
 ## 🧩 Recursos
 
 - Loop de jogo básico (update -> draw)
@@ -167,7 +157,9 @@ You need the following to build and run the game:
 
 Tip: On many Linux distributions you can install raylib from the package manager or build it from source. On Windows and macOS follow raylib's official installation instructions.
 
-### Example (Ubuntu / Debian) — install commands
+## ⚙️ Installation Methods
+
+#### Example (Ubuntu / Debian) — install commands
 
 ```bash
 # install build tools and dependencies (example)
