@@ -1,0 +1,3 @@
+/home/vitor-borges/Área de trabalho/Pastas/Eng. De Software/c-game-raylib/build/CMakeFiles/game.dir
+/home/vitor-borges/Área de trabalho/Pastas/Eng. De Software/c-game-raylib/build/CMakeFiles/edit_cache.dir
+/home/vitor-borges/Área de trabalho/Pastas/Eng. De Software/c-game-raylib/build/CMakeFiles/rebuild_cache.dir

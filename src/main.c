@@ -1,16 +1,16 @@
 // codigo teste para abrir a janela
 
 #include "raylib.h"
+#include "./config/config.h"
+#include "./core/game.h"
 
 int main(void)
 {
-    InitWindow(650, 650, "Slot Machine Game");
+    InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE);
 
     while (!WindowShouldClose()) {
-        BeginDrawing();
-        ClearBackground(RAYWHITE);
-        DrawText("Raylib funcionando!", 190, 280, 20, DARKGRAY);
-        EndDrawing();
+        UpdateGame();
+        DrawGame();
     }
 
     CloseWindow();
