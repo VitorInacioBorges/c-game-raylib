@@ -11,6 +11,7 @@ typedef enum {
 
 void InitGame();
 void UpdateGame();
+void DrawFruit(int fruit, int x, int y, int offsetX, int offsetY);
 void DrawGame();
 void StartSpin();
 void WinGame();
@@ -19,6 +20,9 @@ void LoseGame();
 extern SlotState slot_state;
 extern int money;
 extern int reels[3];
-extern float spinTimer;
+extern int game_over;
+extern float spin_timer;
+extern float shake_timer;
+extern float lose_message_timer;
 
 #endif
