@@ -1,6 +1,6 @@
 #define WINDOW_TITLE "Slot Machine Game"
-#define WINDOW_WIDTH 650
-#define WINDOW_HEIGHT 650
+#define WINDOW_WIDTH 400
+#define WINDOW_HEIGHT 400
 #define INITIAL_MONEY 1000
 #define DEFAULT_VOLUME 60
 #define DEFAULT_FPS 40

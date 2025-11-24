@@ -60,6 +60,15 @@ void UpdateGame() {
                 StartSpin();
             } break;
         case SLOT_SPINNING:
+            spinTimer -= GetFrameTime();
+
+            reels[0] = rand() % FRUITS;
+            reels[1] = rand() % FRUITS;
+            reels[2] = rand() % FRUITS;
+
+            if(spinTimer <= 0) {
+                slot_state = SLOT_RESULT;
+            } break;
         case SLOT_RESULT:
     }
 }
