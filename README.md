@@ -113,7 +113,9 @@ mkdir -p build
 cd build
 cmake ..
 make -j$(nproc)
-# executar o binário do jogo (a partir da raiz do projeto)
+# executar da pasta build (./build)
+./game
+# executar a partir da raiz do projeto (./c-game-raylib)
 ./build/game
 ```
 
