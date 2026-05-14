@@ -109,6 +109,7 @@ Este diagrama mostra a organização principal: `src` com lógica do jogo, `asse
 Usando CMake (recomendado):
 
 ```bash
+# executar na raiz do projeto (./)
 mkdir -p build
 cd build
 cmake ..
