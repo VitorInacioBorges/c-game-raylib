@@ -1,256 +1,119 @@
-# 🇧🇷 c-game-raylib (PORTUGUESE)
+<a id="portugues"></a>
 
-Um pequeno jogo 2D escrito em C usando a biblioteca raylib. Este repositório contém o código-fonte, os assets e os arquivos de build para que você possa compilar e executar o projeto em plataformas desktop.
+# 🎰​ Jogo de Caça Níqueis
 
-## 🚀 O Jogo
+[Português](#portugues) 🇧🇷 / 🇵🇹 | [English](#english) 🇺🇸 / 🇬🇧 / 🇨🇦 / 🇦🇺
 
-- Um jogo/demo 2D minimalista que demonstra tratamento de entrada, renderização, loop de jogo simples e gerenciamento de assets usando raylib.
-- Lida com entrada do teclado (e opcionalmente do mouse) para controlar o jogador, renderiza sprites da pasta `assets/sprites/` e reproduz áudio de `assets/audio/`.
-- Projetado como um projeto de aprendizado para a matéria de Programação de Computadores I do curso de Engenharia de Software da UEPG.
+Jogo desktop 2D de slot machine criado em C com raylib por Vitor Inacio Borges.
 
-## 🧩 Recursos
+## Propósito
 
-- Loop de jogo básico (update -> draw)
-- Renderização de sprites e suporte simples a animação
-- Reprodução de áudio (música de fundo / efeitos sonoros)
-- Configurável via `src/config/config.h`
+Oferecer um projeto pequeno e executável para praticar programação em C, loop de jogo, controle de estado, renderização de sprites, áudio e uso da raylib em um jogo desktop. O projeto também funciona como material de aprendizado para Programação de Computadores I no curso de Engenharia de Software da UEPG.
 
-## ⚙️ Dependências
+## Objetivos
 
-Você precisa dos seguintes itens para compilar e executar o jogo:
+- **Slot Machine Jogável**: Simular três reels com símbolos sorteados, custo por rodada e recompensa por combinação.
+- **Loop de Jogo com raylib**: Controlar inicialização, atualização, renderização, áudio e encerramento da janela.
+- **Gerenciamento de Assets**: Carregar sprites, quadros de animação e sons a partir da pasta `assets/`.
+- **Build Local Simples**: Compilar o jogo com CMake, GCC/Clang e raylib instalada no sistema.
 
-- Compilador C (GCC ou Clang) com suporte a C11
-- CMake (recomendado) ou um ambiente Make funcional
-- Biblioteca raylib (https://www.raylib.com/) — biblioteca auxiliar para gráficos/áudio/entrada
-- Bibliotecas do sistema típicas: math, pthread, dl, rt, X11 (no Linux)
+## Serviços
 
-Dica: em muitas distribuições Linux você pode instalar o raylib pelo gerenciador de pacotes ou compilá-lo a partir do código-fonte. No Windows e macOS, siga as instruções oficiais de instalação do raylib.
+| Serviço               | Descrição                                                                                        |
+| --------------------- | ------------------------------------------------------------------------------------------------ |
+| **Aplicação Desktop** | Binário `game` escrito em **C11**, usando **raylib** para janela, entrada, renderização e áudio. |
+| **Build CMake**       | Configuração em `CMakeLists.txt` que gera o executável em `build/game` e linka com `raylib`.     |
+| **Assets do Jogo**    | Sprites PNG e sons MP3 versionados em `assets/sprites/` e `assets/audio/`.                       |
 
-## Métodos de Instalação
+## Documentação Técnica
 
-#### (Ubuntu / Debian) — comandos de instalação
+| Documento                                                         | Descrição                                                |
+| ----------------------------------------------------------------- | -------------------------------------------------------- |
+| [ARCHITECTURE.md](./documentation/portuguese/ARCHITECTURE.md)     | Fundação arquitetural, estados do jogo e fluxo de dados  |
+| [DIRECTORIES.md](./documentation/portuguese/DIRECTORIES.md)       | Mapeamento completo de diretórios e responsabilidades    |
+| [TECHNOLOGIES.md](./documentation/portuguese/TECHNOLOGIES.md)     | Stack, metodologias e gerenciamento de estado            |
+| [CONVENTIONS.md](./documentation/portuguese/CONVENTIONS.md)       | Padrões de nomeação, organização e patterns usados       |
+| [BEST-PRACTICES.md](./documentation/portuguese/BEST-PRACTICES.md) | Práticas de C/raylib, testes manuais, riscos e segurança |
+| [PREREQUISITES.md](./documentation/portuguese/PREREQUISITES.md)   | Dependências de sistema, ferramentas e hardware          |
+| [EXECUTION.md](./documentation/portuguese/EXECUTION.md)           | Setup local, build, execução e verificação               |
+
+## Estrutura Geral
 
 ```bash
-# instalar ferramentas de build e dependência
-sudo apt update
-sudo apt install build-essential git
-sudo apt install libasound2-dev libx11-dev libxrandr-dev libxi-dev libgl1-mesa-dev libglu1-mesa-dev libxcursor-dev libxinerama-dev libwayland-dev libxkbcommon-dev gcc
-
-# instalação da raylib e cmake (instalar em uma pasta universal ou onde mantém os programas)
-sudo apt install cmake
-git clone https://github.com/raysan5/raylib.git raylib
-cd raylib
-mkdir build && cd build
-cmake -DBUILD_SHARED_LIBS=ON ..
-make
-sudo make install
-sudo ldconfig
-```
-
-Para instalar a biblioteca `raylib` siga os passos de instalação (especificamente os passos para desenvolvimento com CMake) disponíveis em: https://github.com/raysan5/raylib/wiki/Working-on-GNU-Linux e instale-a universalmente na pasta /opt ou /usr/local ou qualquer pasta que esteja acima de onde você salvar o jogo.
-
-## 🖥️ Sistemas Operacionais Suportados
-
-- Linux (testado)
-- macOS (provavelmente — raylib tem suporte para macOS)
-- Windows (MSYS2 / MinGW ou Visual Studio com raylib)
-
-Observação: dependências específicas por plataforma (X11, backends de áudio) variam conforme o sistema. O build usa CMake, portanto deve se adaptar às plataformas suportadas pelo raylib.
-
-## 📁 Arquitetura
-
-Estrutura:
-
-- `CMakeLists.txt` — configuração de build principal com CMake
-- `src/` — arquivos fonte em C
-  - `main.c` — ponto de entrada; inicializa o motor e inicia o loop do jogo
-  - `core/game.c`, `core/game.h` — lógica principal do jogo, loop de update/draw e gerenciamento de estado
-  - `utils/` — utilitários e pequenos subsistemas
-  - `config/config.h` — constantes e configuração em tempo de compilação
-- `assets/` — assets do jogo
-  - `assets/sprites/` — sprites de imagens
-  - `assets/audio/` — músicas e efeitos sonoros
-- `build/` — artefatos locais do CMake e o binário compilado (`build/game`)
-
-Resumo:
-
-- Loop principal single-thread: `main` inicializa o raylib, carrega assets e entra no loop update->draw.
-- Módulos por responsabilidade: tratamento de entrada, estado do jogo, renderização e gerenciamento de recursos estão separados em pequenos módulos C sob `src/` e `src/core`.
-- Propriedade simples de recursos: o jogo carrega texturas e sons na inicialização e libera na saída (veja `core/game.c`).
-- Build com CMake: mantém o sistema de build simples e multiplataforma.
-
-## 🗂️ Esquema de pastas (visão rápida)
-
-Uma representação simples da estrutura atual do projeto:
-
-```
 c-game-raylib/
-├── CMakeLists.txt
-├── README.md
 ├── assets/
-│   ├── audio/
-│   └── sprites/
-├── build/
-│   └── (artefatos do CMake e binário)
-└── src/
-    ├── main.c
-    ├── config/
-    │   └── config.h
-    ├── core/
-    │   ├── game.c
-    │   └── game.h
-    └── utils/
+│   ├── audio/              # Efeitos sonoros e áudio de game over
+│   └── sprites/            # Sprite da máquina, símbolos e animação dos reels
+├── documentation/
+│   ├── english/            # Documentação em Inglês
+│   └── portuguese/         # Documentação em Português
+├── src/
+│   ├── config/             # Constantes de janela, FPS e economia do jogo
+│   ├── core/               # Estado, loop, desenho, sorteio e regras da slot machine
+│   └── main.c              # Ponto de entrada raylib
+├── .vscode/                # Configuração local de editor e task GCC
+├── CMakeLists.txt          # Build CMake
+├── notes.txt               # Anotações de estudo sobre raylib
+└── README.md               # Este arquivo
 ```
-
-Este diagrama mostra a organização principal: `src` com lógica do jogo, `assets` com mídias e `build` com artefatos gerados.
-
-## 🛠️ Compilar e executar
-
-Usando CMake (recomendado):
-
-```bash
-# executar na raiz do projeto (./)
-mkdir -p build
-cd build
-cmake ..
-make -j$(nproc)
-# executar da pasta build (./build)
-./game
-# executar a partir da raiz do projeto (./c-game-raylib)
-./build/game
-```
-
-Se um `Makefile` estiver disponível ou se preferir executar pelo editor, também é possível usar a task de build fornecida (veja as tasks do seu editor).
-
-## ✅ Checklist rápido antes de executar
-
-- Instalar o raylib e dependências do sistema
-- Garantir que a pasta `assets/` exista e contenha os arquivos esperados
-- Compilar o projeto (CMake ou Make)
 
 ---
 
-<br>
+<a id="english"></a>
 
-# 🇺🇸 c-game-raylib (ENGLISH)
+# 🎰​ Jackpot Game
 
-A small 2D game written in C using the raylib library. This repository contains the source code, assets and build files so you can compile and run the project on desktop platforms.
+[Português](#portugues) 🇧🇷 / 🇵🇹 | [English](#english) 🇺🇸 / 🇬🇧 / 🇨🇦 / 🇦🇺
 
-## 🚀 The Game
+A 2D desktop slot machine game written in C with raylib by Vitor Inacio Borges.
 
-- A minimal 2D game/demo that demonstrates input handling, rendering, a simple game loop and asset management using raylib.
-- Handles keyboard (and optionally mouse) input to control the player, renders sprites from `assets/sprites/` and plays audio from `assets/audio/`.
-- Designed as a learning project for the Computer Programming subject of Ponta Grossa's State University.
+## Purpose
 
-## 🧩 Features
+To provide a small executable project for practicing C programming, game loops, state control, sprite rendering, audio, and raylib usage in a desktop game. The project also serves as learning material for Computer Programming I in the Software Engineering course at UEPG.
 
-- Basic game loop (update -> draw)
-- Sprite rendering and simple animation support
-- Audio playback (background music / SFX)
-- Configurable via `src/config/config.h`
+## Objectives
 
-## ⚙️ Dependencies
+- **Playable Slot Machine**: Simulate three reels with randomized symbols, spin cost, and reward on matching combinations.
+- **raylib Game Loop**: Control initialization, update, rendering, audio, and window shutdown.
+- **Asset Management**: Load sprites, animation frames, and sounds from the `assets/` folder.
+- **Simple Local Build**: Compile the game with CMake, GCC/Clang, and raylib installed on the system.
 
-You need the following to build and run the game:
+## Services
 
-- C compiler (GCC or Clang) supporting C11
-- CMake (recommended) or a working Make environment
-- raylib library (https://www.raylib.com/) — helper library for graphics/audio/input
-- Typical system libraries: math, pthread, dl, rt, X11 (on Linux)
+| Service                 | Description                                                                                            |
+| ----------------------- | ------------------------------------------------------------------------------------------------------ |
+| **Desktop Application** | `game` binary written in **C11**, using **raylib** for windowing, input, rendering, and audio.         |
+| **CMake Build**         | `CMakeLists.txt` configuration that outputs the executable to `build/game` and links against `raylib`. |
+| **Game Assets**         | PNG sprites and MP3 sounds versioned in `assets/sprites/` and `assets/audio/`.                         |
 
-Tip: On many Linux distributions you can install raylib from the package manager or build it from source. On Windows and macOS follow raylib's official installation instructions.
+## Technical Documentation
 
-## ⚙️ Installation Methods
+| Document                                                       | Description                                           |
+| -------------------------------------------------------------- | ----------------------------------------------------- |
+| [ARCHITECTURE.md](./documentation/english/ARCHITECTURE.md)     | Architectural foundation, game states, and data flow  |
+| [DIRECTORIES.md](./documentation/english/DIRECTORIES.md)       | Complete mapping of directories and responsibilities  |
+| [TECHNOLOGIES.md](./documentation/english/TECHNOLOGIES.md)     | Stack, methodologies, and state management            |
+| [CONVENTIONS.md](./documentation/english/CONVENTIONS.md)       | Naming patterns, organization, and patterns used      |
+| [BEST-PRACTICES.md](./documentation/english/BEST-PRACTICES.md) | C/raylib practices, manual tests, risks, and security |
+| [PREREQUISITES.md](./documentation/english/PREREQUISITES.md)   | System dependencies, tools, and hardware              |
+| [EXECUTION.md](./documentation/english/EXECUTION.md)           | Local setup, build, execution, and verification       |
 
-#### Example (Ubuntu / Debian) — install commands
+## General Structure
 
 ```bash
-# install build tools and dependencies (example)
-sudo apt update
-sudo apt install build-essential git
-sudo apt install libasound2-dev libx11-dev libxrandr-dev libxi-dev libgl1-mesa-dev libglu1-mesa-dev libxcursor-dev libxinerama-dev libwayland-dev libxkbcommon-dev gcc
-
-# installation of raylib and cmake (install in a universal folder or where you keep programs)
-sudo apt install cmake
-git clone https://github.com/raysan5/raylib.git raylib
-cd raylib
-mkdir build && cd build
-cmake -DBUILD_SHARED_LIBS=ON ..
-make
-sudo make install
-sudo ldconfig
-```
-
-If `libraylib-dev` is not available, follow raylib's build instructions to compile and install it.
-
-## 🖥️ Supported Operating Systems
-
-- Linux (tested)
-- macOS (likely — raylib supports macOS)
-- Windows (MSYS2 / MinGW or Visual Studio with raylib)
-
-Note: Platform-specific dependencies (X11, audio backends) differ by OS. The build uses CMake so it should adapt across platforms supported by raylib.
-
-## 📁 Project Layout / Software Architecture
-
-High-level layout:
-
-- `CMakeLists.txt` — top-level CMake build
-- `src/` — C source files
-  - `main.c` — entry point; initializes engine and starts game loop
-  - `core/game.c`, `core/game.h` — core game logic, update/draw loop and state management
-  - `utils/` — helper utilities and small subsystems
-  - `config/config.h` — compile-time configuration and constants
-- `assets/` — game assets
-  - `assets/sprites/` — image sprites
-  - `assets/audio/` — music and sound effects
-- `build/` — local CMake artifacts and the compiled binary (`build/game`)
-
-Architecture summary:
-
-- Single-threaded main loop: `main` initializes raylib, loads assets, and enters an update->draw loop.
-- Modules by responsibility: input handling, game state, rendering, and resource management are separated into small C modules under `src/` and `src/core`.
-- Simple resource ownership: the game loads textures and sounds at startup and frees them on exit (see `core/game.c`).
-- Build with CMake: keeps the build system simple and cross-platform.
-
-## 🗂️ Folder Scheme (quick view)
-
-```
 c-game-raylib/
-├── CMakeLists.txt
-├── README.md
 ├── assets/
-│   ├── audio/
-│   └── sprites/
-├── build/
-│   └── (cmake artifacts and binary)
-└── src/
-    ├── main.c
-    ├── config/
-    │   └── config.h
-    ├── core/
-    │   ├── game.c
-    │   └── game.h
-    └── utils/
+│   ├── audio/              # Sound effects and game-over audio
+│   └── sprites/            # Machine sprite, symbols, and reel animation
+├── documentation/
+│   ├── english/            # English Documentation
+│   └── portuguese/         # Portuguese Documentation
+├── src/
+│   ├── config/             # Window, FPS, and game economy constants
+│   ├── core/               # State, loop, drawing, randomization, and slot rules
+│   └── main.c              # raylib entry point
+├── .vscode/                # Local editor configuration and GCC task
+├── CMakeLists.txt          # CMake build
+├── notes.txt               # Study notes about raylib
+└── README.md               # This file
 ```
-
-## 🛠️ Build & Run
-
-Using CMake (recommended):
-
-```bash
-mkdir -p build
-cd build
-cmake ..
-make -j$(nproc)
-# run the game binary (from project root)
-./build/game
-```
-
-## ✅ Quick checklist before running
-
-- Install raylib and system dependencies
-- Ensure `assets/` folder exists and contains expected files
-- Build the project (CMake or Make)
-
----
